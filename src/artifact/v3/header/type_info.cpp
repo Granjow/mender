@@ -145,7 +145,7 @@ ExpectedTypeInfo Parse(io::Reader &reader) {
 		log::Trace("No artifact_clears_provides found in type-info");
 	}
 
-	log::Trace("Finished parsing the type-info..");
+	log::Trace("Finished parsing the type-info.");
 
 	return type_info;
 }

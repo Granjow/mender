@@ -71,7 +71,9 @@ ExpectedEntry Reader::Next() {
 		auto err = archive_handle_.EnsureEOF();
 		if (err != error::NoError) {
 			return expected::unexpected(err.WithContext("Reached the end of the archive"));
-		}
+		} else {
+            std::cout << "[54877] EOF without error (whatever that means)" << std::endl;
+        }
 		return expected::unexpected(MakeError(TarEOFError, "Reached the end of the archive"));
 	}
 	if (r != ARCHIVE_OK) {

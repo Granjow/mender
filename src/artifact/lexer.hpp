@@ -50,6 +50,7 @@ public:
 	}
 
 	Token &Next() {
+        std::cout << "[54877] Lexer reads next token from tar" << std::endl;
 		auto entry = tar_reader_->Next();
 		if (!entry) {
 			if (entry.error().code == tar::MakeError(tar::TarEOFError, "").code) {
