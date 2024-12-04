@@ -65,7 +65,9 @@ ExpectedEntry Reader::Next() {
 	}
 
 	int r = archive_read_next_header(archive_handle_.Get(), &current_entry);
+    std::cout << "[54877] Read next archive header: " << r << std::endl;
 	if (r == ARCHIVE_EOF) {
+        std::cout << "[54877] Header indicates EOF: " << ARCHIVE_EOF << " Checking if it really is EOF" << std::endl;
 		auto err = archive_handle_.EnsureEOF();
 		if (err != error::NoError) {
 			return expected::unexpected(err.WithContext("Reached the end of the archive"));
