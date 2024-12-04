@@ -141,6 +141,7 @@ error::Error Handle::EnsureEOF() {
 	if (!ret) {
 		return ret.error();
 	} else if (ret.value() != 0) {
+        std::cerr << "Error [54877]: return value is " << ret.value() << std::endl;
 		return tar::MakeError(tar::TarExtraDataError, "");
 	}
 
