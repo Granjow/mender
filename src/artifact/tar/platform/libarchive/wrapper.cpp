@@ -137,11 +137,13 @@ ExpectedSize Handle::Read(vector<uint8_t>::iterator start, vector<uint8_t>::iter
 }
 
 error::Error Handle::EnsureEOF() {
-	auto ret = reader_container_.reader_.Read(small_buf_.begin(), small_buf_.end());
+    auto begin = small_buf_.begin();
+    auto end = small_buf_.end();
+	auto ret = reader_container_.reader_.Read(begin, end);
 	if (!ret) {
 		return ret.error();
 	} else if (ret.value() != 0) {
-        std::cerr << "Error [54877]: return value is " << ret.value() << " while reading from " << small_buf_.begin() << " to " << small_buf_.end() << std::endl;
+        std::cerr << "Error [54877]: return value is " << ret.value() << " while reading from " << uint32_t(begin) << " to " << uint32_t(end) << std::endl;
 		return tar::MakeError(tar::TarExtraDataError, "");
 	}
 
